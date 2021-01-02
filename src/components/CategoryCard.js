@@ -1,19 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   TouchableOpacity,
   ImageBackground,
   Text,
-  ScrollView,
+  Button,
 } from 'react-native';
+import Modal from 'react-native-modal';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {category_card} from '../styles/components_styles';
 
 const CategoryCard = ({data, onSelect}) => {
+  const [isModalVisible, setModalVisible] = useState(false);
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
   return (
     <View style={category_card.container}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={onSelect}>
         <ImageBackground
           resizeMode="contain"
           imageStyle={{borderRadius: 2}}
@@ -30,7 +36,7 @@ const CategoryCard = ({data, onSelect}) => {
           {data.strCategoryDescription}
         </Text>
         <TouchableOpacity
-          onPress={onSelect}
+          onPress={toggleModal}
           style={category_card.continueContainer}>
           <Icon
             style={category_card.continue}
@@ -38,6 +44,23 @@ const CategoryCard = ({data, onSelect}) => {
             color="white"
             size={35}
           />
+          <Modal
+            animationInTiming={1000}
+            animationOutTiming={1000}
+            style={category_card.continueModal}
+            isVisible={isModalVisible}>
+            <View style={category_card.continueModal}>
+              <Text style={category_card.title}>{data.strCategory}</Text>
+              <Text style={category_card.continueText}>
+                {data.strCategoryDescription}
+              </Text>
+              <TouchableOpacity
+                style={category_card.continueHideButton}
+                onPress={toggleModal}>
+                <Text>BACK TO THE CATEGORY</Text>
+              </TouchableOpacity>
+            </View>
+          </Modal>
         </TouchableOpacity>
       </View>
     </View>
