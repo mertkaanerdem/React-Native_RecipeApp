@@ -1,15 +1,15 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-//import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+//import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {CategoryPage, MenuPage, RecipePage, SavedFoodsPage} from './pages';
 
 const Stack = createStackNavigator();
-const Tab = createMaterialBottomTabNavigator();
+const Tab = createBottomTabNavigator();
 
 function RestaurantStack() {
   return (
@@ -25,7 +25,8 @@ function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        activeColor="rgba(150, 200, 200, 0.2)"
+        activeColor="#F4B700"
+        style={{backgroundColor: 'tomato'}}
         initialRouteName="Restaurant">
         <Tab.Screen
           name="Saved"
@@ -33,7 +34,7 @@ function App() {
           options={{
             tabBarLabel: 'Saved Meals',
             tabBarIcon: ({color}) => (
-              <MaterialCommunityIcons name="save" color={'#F4B700'} size={26} />
+              <MaterialCommunityIcons name="home" color={color} size={26} />
             ),
           }}
         />

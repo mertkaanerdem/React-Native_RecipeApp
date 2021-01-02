@@ -27,16 +27,17 @@ const saved_paged = StyleSheet.create({
   container: {
     backgroundColor: 'rgba(150, 200, 200, 0.2)',
     flex: 1,
-    justifyContent: 'center',
   },
   button: {
     backgroundColor: '#F4B700',
     elevation: 5,
     borderRadius: 8,
     padding: 10,
-    margin: 15,
-    alignContent: 'center',
+    margin: 10,
+    marginTop: 430,
     alignItems: 'center',
+    position: 'relative',
+    justifyContent: 'flex-end',
   },
 });
 
