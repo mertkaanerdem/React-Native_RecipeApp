@@ -13,9 +13,12 @@ function MenuPage({navigation, route}) {
   const [foodMenu, setFoodMenu] = useState({});
 
   async function fetchMenuData() {
-    await axios
-      .get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${menu}`)
-      .then((response) => setFoodMenu(response.data));
+    const {
+      data: {meals}, //api'da meals diye ikinci bir obje var o yüzden böyle yapıldı. ikinci şekil alımı böyle
+    } = await axios.get(
+      `https://www.themealdb.com/api/json/v1/1/filter.php?c=${menu}`,
+    );
+    setFoodMenu(meals);
   }
 
   useEffect(() => {
@@ -35,7 +38,7 @@ function MenuPage({navigation, route}) {
       <FlatList
         numColumns={2}
         keyExtractor={(_, index) => index.toString()}
-        data={foodMenu.meals}
+        data={foodMenu}
         renderItem={renderMenu}
       />
     </View>
